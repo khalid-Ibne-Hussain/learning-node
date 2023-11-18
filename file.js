@@ -11,4 +11,21 @@ const writtenText = fs.writeFileSync('./texts/write.txt', readText + 'this is my
 // console.log(writtenText);
 
 // reading file text asynchronous way________
+fs.readFile('./texts/read.txt', 'utf-8', (err, data) => {
+    if (err) {
+        throw Error('Error reading text')
+    }
+    // console.log(data);
+
+    // writing text asynchronously__________
+    fs.writeFile('./texts/write2.txt', data + "\nThis is solid", 'utf-8', (err) => {
+        if (err) {
+            throw Error("Error writing data")
+        }
+
+        console.log(fs.readFileSync("./texts/write2.txt", "utf-8"));
+
+    })
+})
+
 
